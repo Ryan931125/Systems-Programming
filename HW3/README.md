@@ -1,4 +1,20 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/qiC0SpnL)
-# NTU System Programming 2024 Fall Programming Assignment 3
+# User-Level Thread Library
 
-Please refer to the [assignment description](https://hackmd.io/@seantsao00/sp2024_hw3) for the details.
+## Overview
+
+This project involves the development of a **User-Level Thread Library** that enables multithreading capabilities within a single process. The library is designed to manage multiple threads, allowing for concurrent execution and efficient CPU utilization without relying on kernel-level threading.
+
+## Features
+
+1. **Thread Creation and Management**: Implement functions to create, initialize, and manage threads within the user space.
+2. **Context Switching**: Develop mechanisms to switch between different thread contexts, facilitating cooperative multitasking.
+3. **Synchronization**: Implement synchronization primitives to manage access to shared resources among threads.
+4. **Signal Handling**: Incorporate signal handling to manage thread interruptions and ensure robust execution.
+
+## Implementation Details
+
+- **Thread Control Block (TCB)**: Design a `struct tcb` to maintain thread-specific information such as thread ID, state, stack pointer, and other necessary metadata.
+- **Scheduler**: Implement a scheduler to manage thread execution order based on a predefined scheduling policy.
+- **Context Switching Mechanism**: Utilize functions like `setjmp()` and `longjmp()` to save and restore thread contexts, enabling seamless switching between threads.
+- **Synchronization Primitives**: Develop mutexes or semaphores to prevent race conditions and ensure data consistency when multiple threads access shared resources.
+- **Signal Handling**: Implement signal handlers to catch and manage signals like `SIGTSTP`, ensuring graceful suspension and resumption of threads.
