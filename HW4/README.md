@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project implements a Matrix Multiplication Machine as specified in the assignment. It performs matrix multiplication following the given constraints and requirements.
+This project implements a Matrix Multiplication Machine. It performs matrix multiplication following the given constraints and requirements.
 
 ## Features
 - Reads input matrices from a specified format.
