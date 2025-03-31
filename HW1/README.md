@@ -1,47 +1,60 @@
-# Happy Friends Tree
+# csieTrain System
 
-## Description
+## Overview
 
-The **Happy Friends Tree** project models a dynamic tree structure representing social connections. It allows for adding, checking, modifying, and terminating relationships within the tree, simulating real-world social interactions.
+The **csieTrain** system is designed to enhance the train seat reservation process by efficiently handling multiple client requests simultaneously. It comprises two main components:
+
+- **Read Server**: Allows passengers to check seat availability.
+- **Write Server**: Manages seat reservations and updates seat records.
 
 ## Features
 
-1. **Meet**: Add a node to the tree structure.
-2. **Check**: Output the status of a subtree.
-3. **Graduate**: Terminate all processes of a subtree.
-4. **Adopt**: Modify the structure by moving a subtree to another node.
+1. **Concurrent Request Handling**: Utilizes multiplexing techniques (`select()` or `poll()`) to manage multiple client connections without blocking.
+2. **Record Consistency**: Implements file locking mechanisms to prevent simultaneous modifications and ensure data integrity.
+3. **Connection Timeout Management**: Automatically closes idle connections after a predefined period to free up resources and prevent blocked reservations.
+4. **Robust Connection Handling**: Manages connection disruptions gracefully, ensuring incomplete messages do not impact other client requests.
 
 ## Implementation Details
 
-- **Meet**: Utilizes `pipe()`, `fork()`, `dup()`, and `exec()` to manage process creation and communication.
-- **Check**: Designs I/O through pipes between parent and child processes to inspect the tree.
-- **Graduate**: Handles subtree process elimination and resource cleanup.
-- **Adopt**: Combines the above functionalities, addressing use cases and limitations of FIFO.
+- **Multiplexing**: Employed `select()` system call to monitor multiple file descriptors, enabling the server to handle multiple client connections efficiently.
+- **File Locking**: Used `flock()` to implement advisory locks on seat map files, ensuring that only one process can modify a file at a time.
+- **Timeout Mechanism**: Integrated a timeout feature that tracks client activity and disconnects inactive clients after a specified duration.
+- **Signal Handling**: Implemented signal handlers to manage unexpected client disconnections and clean up resources appropriately.
 
 ## Getting Started
 
 ### Prerequisites
 
-- C compiler (e.g., `gcc`)
-- Make sure to update your local files with the latest updates provided [here](https://drive.google.com/file/d/1oPqE41VsZO8zwQanzdYhwvoION6MPZRy/view?usp=drive_link).
+- **Operating System**: Unix-like system (e.g., Linux)
+- **Compiler**: GCC
+- **Development Tools**: Make
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/Happy-Friends-Tree.git
+   git clone https://github.com/your-username/csieTrain.git
    ```
-2. Navigate to the project directory:
+2. **Navigate to the Project Directory**:
    ```bash
-   cd Happy-Friends-Tree
+   cd csieTrain
    ```
-4. Compile the program:
-   ```bash
-   gcc friend.c -o friend
+3. **Compile the Servers**:
+   - To compile the read server:
+     ```bash
+     gcc server.c -D READ_SERVER -o read_server
+     ```
+   - To compile the write server:
+     ```bash
+     gcc server.c -D WRITE_SERVER -o write_server
    ```
-
+   
 ### Usage
-Run the program using:
-```bash
-./friend
-```
+
+1. **Start the Write Server**:
+   `./write_server`
+3. **Start the Read Server**:
+   `./read_server`
+5. **Client Interaction**:
+   - Use a TCP client (e.g., telnet or a custom client application) to connect to the servers.
+	- Follow on-screen prompts to check seat availability or make reservations.
