@@ -47,14 +47,18 @@ The **csieTrain** system is designed to enhance the train seat reservation proce
    - To compile the write server:
      ```bash
      gcc server.c -D WRITE_SERVER -o write_server
-   ```
+     ```
    
 ### Usage
 
 1. **Start the Write Server**:
-   `./write_server`
+   ```bash
+   ./write_server
+   ```
 3. **Start the Read Server**:
-   `./read_server`
+   ```bash
+   ./read_server
+   ```
 5. **Client Interaction**:
    - Use a TCP client (e.g., telnet or a custom client application) to connect to the servers.
-	- Follow on-screen prompts to check seat availability or make reservations.
+   - Follow on-screen prompts to check seat availability or make reservations.
