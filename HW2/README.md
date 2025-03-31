@@ -1,16 +1,47 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/HBEROTsP)
-SP2024_HW2 Release
----
+# Happy Friends Tree
 
-[Homework Spec](https://hackmd.io/@rwGDMkdFT2m4A250yFDLPg/BJURLjchC)
---
-TODO:
-1. Complete Makefile
-2. Complete `friend.c`
+## Description
 
-Reminder:
-1. Start homework by running code with `./friend Not_Tako`
-2. You may test public testcase by `./friend Not_Tako < input.txt > output.txt`
-3. use `diff` or other commands to your advantage.
-4. write error code
-5. there is not public judge (yet?)
+The **Happy Friends Tree** project models a dynamic tree structure representing social connections. It allows for adding, checking, modifying, and terminating relationships within the tree, simulating real-world social interactions.
+
+## Features
+
+1. **Meet**: Add a node to the tree structure.
+2. **Check**: Output the status of a subtree.
+3. **Graduate**: Terminate all processes of a subtree.
+4. **Adopt**: Modify the structure by moving a subtree to another node.
+
+## Implementation Details
+
+- **Meet**: Utilizes `pipe()`, `fork()`, `dup()`, and `exec()` to manage process creation and communication.
+- **Check**: Designs I/O through pipes between parent and child processes to inspect the tree.
+- **Graduate**: Handles subtree process elimination and resource cleanup.
+- **Adopt**: Combines the above functionalities, addressing use cases and limitations of FIFO.
+
+## Getting Started
+
+### Prerequisites
+
+- C compiler (e.g., `gcc`)
+- Make sure to update your local files with the latest updates provided [here](https://drive.google.com/file/d/1oPqE41VsZO8zwQanzdYhwvoION6MPZRy/view?usp=drive_link).
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/Happy-Friends-Tree.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Happy-Friends-Tree
+   ```
+4. Compile the program:
+   ```bash
+   gcc friend.c -o friend
+   ```
+
+### Usage
+Run the program using:
+```bash
+./friend
+```
